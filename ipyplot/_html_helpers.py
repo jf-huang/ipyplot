@@ -213,7 +213,6 @@ def _create_html_viewer(
     </style>
     <div>
         <input type="checkbox" id="ipyplot-html-viewer-toggle-%(1)s">
-        <label id="ipyplot-html-viewer-label-%(1)s" for="ipyplot-html-viewer-toggle-%(1)s">show html</label>
         <textarea id="ipyplot-html-viewer-textarea-%(1)s" readonly>
             %(0)s
         </textarea>
@@ -287,8 +286,10 @@ def _create_img(
 
     img_html = ""
     if custom_text is not None:
-        img_html += '<h4 style="font-size: 12px; word-wrap: break-word;">%s</h4>' % str(custom_text)  # NOQA E501
-
+        img_html += '<h4 style="font-size: 12px; word-wrap: break-word;">(%s) %s</h4>' % (str(label+1), str(custom_text))  # NOQA E501
+    else:
+        img_html += '<h4 style="font-size: 12px; word-wrap: break-word;">(%s)</h4>' % (str(label+1))  # NOQA E501
+    
     use_b64 = True
 
     if type(image) is str or type(image) is str_:
@@ -315,7 +316,6 @@ def _create_img(
     html = """
     <div class="ipyplot-placeholder-div-%(0)s">
         <div id="ipyplot-content-div-%(0)s-%(1)s" class="ipyplot-content-div-%(0)s">
-            <h4 style="font-size: 12px; word-wrap: break-word;">%(2)s</h4>
             %(3)s
             <a href="#!">
                 <span class="ipyplot-img-close"/>
