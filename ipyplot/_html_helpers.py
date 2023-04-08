@@ -285,10 +285,12 @@ def _create_img(
     img_uuid = shortuuid.uuid()
 
     img_html = ""
+    if isinstance(label, int):
+      label = str(label+1)
     if custom_text is not None:
-        img_html += '<h4 style="font-size: 12px; word-wrap: break-word;">(%s) %s</h4>' % (str(label+1), str(custom_text))  # NOQA E501
+        img_html += '<h4 style="font-size: 12px; word-wrap: break-word;">(%s) %s</h4>' % (label, custom_text)  # NOQA E501
     else:
-        img_html += '<h4 style="font-size: 12px; word-wrap: break-word;">(%s)</h4>' % (str(label+1))  # NOQA E501
+        img_html += '<h4 style="font-size: 12px; word-wrap: break-word;">(%s)</h4>' % (label)  # NOQA E501
     
     use_b64 = True
 
